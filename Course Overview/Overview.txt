@@ -1,0 +1,51 @@
+Welcome to the course Data Visualization for AI and Machine Learning!
+
+In this course we will explore what does it mean to communicate with data and how to create visuals to support your message. We will also learn how to create beautiful, functional and reusable charts using a variety of Python tools. We will have plenty of practical exercises that will accompany the theory sessions.  The primary language of the class is English. 
+
+There is no exam and the course is graded based on two projects: a small intermediate project and a final project.
+
+Time: Friday, 15:30–17:50
+Location: Rotkreuz, I.S1A_421, or Zoom 
+Streaming / Self-study: For classes scheduled to happen in Rotkreuz, no live streaming will be available. All lectures will be recorded regardless if on site or online, and a recording will be made available on Ilias after the class. Individual project consultations in May will take place on Zoom and are not recorded. 
+
+Class schedule:
+20.02: Rotkreuz
+27.02: Rotkreuz
+06.03: Zoom
+13.03: Rotkreuz
+20.03: Rotkreuz
+27.03: Rotkreuz
+03.04: no class (Easter Break)
+10.04: Rotkreuz
+17.04: Rotkreuz
+24.04: Zoom 
+01.05-15.05: Zoom (online consultations)
+22.05: Rotkreuz (guest lecture)
+29.05: Rotkreuz 
+
+
+
+If you encounter technical problems with your code / venv etc., reach out to Philipp Meschenmoser on the forum or via email: philipp.meschenmoser@hslu.ch
+
+
+
+Semester Outline:
+
+Introduction to data visualization for data science, AI and ML
+Visual encodings, human cognition
+Chart types, choosing charts, developing custom visualizations
+Styling, annotations, elements of graphical design
+Colors
+Strategies for dealing with complexity
+Introduction to interactive visualizations
+Survey of Python tools
+Introduction to data visualization on the web
+Dimensionality reduction for data visualization
+Guest lecture
+Project work, coaching
+Projects - presentations and peer feedback session
+Learning Materials:
+
+Claus Wilke, "Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures", O'Reilly, 2019
+Tamara Munzner, "Visualization Analysis and Design", Routledge, 2014
+Cole Nussbaumer Knaflic, "Storytelling with Data", John Wiley & Sons, 2015
