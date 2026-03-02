@@ -1,0 +1,9 @@
+# Recordings sind zu gross für GitHub (>100MB)
+Recordings/*.mp4
+Recordings/*.mov
+Recordings/*.avi
+
+# Temporäre Dateien
+*.tmp
+__pycache__/
+.ipynb_checkpoints/
