@@ -3,11 +3,6 @@
 > **Zweck:** Diesen Prompt bei jeder neuen Semesterwoche verwenden, damit der Agent automatisch eine **Toolbox-Zusammenfassung** für **Data Visualization (DVIZ, HSLU)** erstellt.  
 > **Kein Prüfungsmodul** – das Ziel sind zwei Projekte. Die Zusammenfassungen dienen als **Baukasten / Nachschlagewerk**, um die gelernten Tools, Techniken und Konzepte direkt in den Projekten einzusetzen.
 
----
-
-## Prompt (Copy-Paste für jede neue Woche)
-
-```
 Erstelle eine praxisorientierte Toolbox-Zusammenfassung für die aktuelle Semesterwoche (SW XX) des Moduls "Data Visualization" (DVIZ, HSLU).
 
 Das Ausgabeformat ist ein Markdown-File namens ZUSAMMENFASSUNG_SWXX.md im entsprechenden SW-Ordner.
@@ -32,6 +27,7 @@ Alle Dateien durchlesen und Inhalte integrieren.
    - Kernkonzept mit Erklärung (z.B. Visual Encodings, Gestalt-Prinzipien, Farbtheorie)
    - Warum ist das wichtig für die Projektarbeit?
    - Dos & Don'ts mit konkreten Beispielen
+   - **Generierte Visualisierungen** einbetten: Zu jedem Konzept ein erklärendes Chart als PNG generieren und mit `![Beschreibung](dateiname.png)` einbetten
 5. **💻 Code-Baukasten**: Die wichtigsten Code-Patterns aus den Notebooks, **direkt wiederverwendbar**:
    - Jedes Pattern mit Titel, kurzer Beschreibung und vollständigem Code-Snippet
    - Copy-Paste-ready für eigene Projekte
@@ -64,6 +60,7 @@ Alle Dateien durchlesen und Inhalte integrieren.
 - **Kein Prüfungsfokus** – es geht um Projekte! Die Zusammenfassung ist ein Baukasten/Nachschlagewerk
 - Das File soll so vollständig sein, dass man damit die Projekt-Aufgaben lösen kann
 - ZUSAMMENFASSUNG aus vorherigen Wochen lesen für Querverweise und Tool-Übersicht
+- **Visualisierungen generieren:** Für jedes wichtige Konzept ein Demo-Chart als PNG erstellen und in die Zusammenfassung einbetten (siehe "Visualisierungen generieren" unten)
 ```
 
 ---
@@ -103,7 +100,13 @@ DVIZ/
 │   ├── [Materialien der Woche]
 │   └── ZUSAMMENFASSUNG_SW01.md  ← Output
 ├── SW02/
-│   └── ZUSAMMENFASSUNG_SW02.md  ← Output
+│   ├── ZUSAMMENFASSUNG_SW02.md  ← Output
+│   ├── generate_charts.py       ← Chart-Generator-Script
+│   └── *.png                    ← Generierte Visualisierungen
+├── SW03/
+│   ├── ZUSAMMENFASSUNG_SW03.md  ← Output
+│   ├── generate_charts.py       ← Chart-Generator-Script
+│   └── *.png                    ← Generierte Visualisierungen
 ├── ...
 └── Prompt.md  ← Diese Datei
 ```
@@ -133,3 +136,39 @@ Da PDFs nicht direkt mit `view_file` gelesen werden können, verwende **PyMuPDF*
 2. Aufruf: `python Slides/extract_pdf.py "Pfad/zur/Datei.pdf" "Pfad/zur/Ausgabe.txt"`
 3. Die generierte `.txt`-Datei mit `view_file` lesen
 4. **Temporäre `.txt`-Dateien nach dem Lesen löschen!**
+
+### Visualisierungen generieren (WICHTIG!)
+
+Für jede Zusammenfassung sollen **Demo-Charts als PNG-Bilder** erstellt werden, die die Konzepte der Woche visuell erklären. Diese Bilder werden direkt in die Markdown-Zusammenfassung eingebettet.
+
+**Workflow:**
+1. Ein Python-Script `generate_charts.py` im SW-Ordner erstellen
+2. Für jedes wichtige Konzept eine Chart-Funktion schreiben
+3. Charts als PNG speichern (im selben SW-Ordner): `dpi=200, bbox_inches='tight', facecolor='white'`
+4. In der Zusammenfassung einbetten: `![Beschreibung](dateiname.png)`
+5. Das Script ausführen (`python generate_charts.py`)
+6. Verifizieren, dass alle Bild-Referenzen in der MD-Datei existierende Dateien referenzieren
+
+**Welche Visualisierungen erstellen (Beispiele):**
+- Konzept-Diagramme (z.B. Architektur-Übersicht, Vergleichstabellen als Grafik)
+- Vergleiche verschiedener Ansätze nebeneinander (z.B. 3 Histogramm-Methoden)
+- Schritt-für-Schritt-Aufbauten (z.B. Chart in 4 Schritten aufgebaut)
+- Styling-Optionen visuell verglichen (z.B. verschiedene Hatch-Patterns)
+- Fertige Beispiel-Dashboards
+- Häufige Fehler visualisiert (z.B. falsche vs. richtige Darstellung)
+
+**Stil der generierten Charts:**
+- Modernes, professionelles Styling (nicht die Matplotlib-Defaults!)
+- Konsistente Farbpalette verwenden (z.B. Material Design Farben)
+- Annotationen und Beschriftungen in den Charts für Selbsterklärung
+- Jeder Chart soll **ohne den umliegenden Text verständlich** sein
+- Mindestens 5-10 Charts pro Woche (je nach Inhaltsmenge)
+
+**Referenz:** Siehe `SW02/generate_charts.py` und `SW03/generate_charts.py` als Vorlagen für den Stil und die Struktur.
+
+### Git Workflow
+
+Nach Fertigstellung:
+1. `git add SWXX/` (SW-Ordner mit Zusammenfassung, Charts und Generator-Script)
+2. `git commit -m "SWXX: Zusammenfassung + Visualisierungen (Thema)"`
+3. `git push`
