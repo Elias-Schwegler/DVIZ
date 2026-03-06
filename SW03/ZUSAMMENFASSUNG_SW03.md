@@ -83,6 +83,8 @@ Figure (Leinwand)
 
 > **Wichtig:** `f.get_children()` und `ax.get_children()` zeigen die Baumstruktur an! Nützlich zum Debuggen: Was ist eigentlich im Plot?
 
+![Matplotlib Architektur: Figure enthält Axes, Axes enthalten Artists (Linien, Punkte, Text)](mpl_architecture.png)
+
 **Warum das wichtig ist für Projekte:**
 
 - Du musst wissen, **wo** du Eigenschaften setzt (Figure vs. Axes)
@@ -115,6 +117,8 @@ for i, ax in enumerate(axes):
     ax.plot(x+i, y)  # Jeder Plot in seiner Axes
 ```
 
+![plt vs. ax API: MATLAB-Stil, Mixed (gefährlich!) und objektorientiert (empfohlen)](plt_vs_ax_api.png)
+
 **Merkregel:** Sobald du `f, ax = plt.subplots()` hast → alles über `ax.` machen!
 
 ---
@@ -131,6 +135,8 @@ Histogramme zeigen die **Verteilung** einer Variablen. Es gibt drei Ansätze in 
 
 > **Aus der Vorlesung:** Verschiedene **Bin-Grössen** zeigen verschiedene Strukturen! Die Wahl der Bins ist ein **analytischer Schritt** – nicht zu viele, nicht zu wenige.
 
+![Histogramme: Pandas, Seaborn und NumPy+MPL im Vergleich](histogram_comparison.png)
+
 ---
 
 ### 4. 2D-Histogramme & Heatmaps
@@ -145,11 +151,15 @@ Zweidimensionale Verteilungen visualisieren die **gemeinsame Verteilung** zweier
 
 > **⚠️ numpy2d-Falle:** `np.histogram2d()` gibt eine Matrix zurück, bei der x entlang der **ersten** Dimension histogrammiert wird. Für `imshow` muss man `H.T` (transponiert) verwenden und `origin='lower'` setzen!
 
+![2D-Histogramme: Seaborn, Matplotlib hist2d und NumPy+imshow im Vergleich](heatmap_2d_comparison.png)
+
 ---
 
 ## 💻 Code-Baukasten
 
 ### 🏗️ Layout erstellen
+
+![Layout-Methoden: subplots Grid, subplot_mosaic, add_axes und inset_axes](layout_examples.png)
 
 #### Einfacher Plot (Standard)
 
@@ -236,6 +246,8 @@ f, ax = plt.subplots(subplot_kw={'projection': 'polar'})
 
 Das zentrale Beispiel aus dem Notebook: Eine Chart-Reproduktion von Grund auf.
 
+![Lollipop Chart in 4 Schritten: Punkte → Stems → Farbe → Labels](lollipop_steps.png)
+
 ```python
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -311,6 +323,8 @@ ax.set_ylim(ax.get_ylim()[0] - margin, ax.get_ylim()[1] + margin)
 ax.set_xlim(ax.get_xlim()[0] - margin, ax.get_xlim()[1] + margin)
 ax.set_title('Correlation plot of gambling data')
 ```
+
+![Korrelationsdaten: Heatmap vs. Bubble-Plot – zwei Darstellungsformen](correlation_plot.png)
 
 > **Pattern:** `unstack()` + `reset_index()` ist der Standardweg, um eine Korrelationsmatrix in Long-Format zu bringen → damit kann man sie als Scatter/Bubble plotten.
 
@@ -456,6 +470,8 @@ with plt.rc_context({'svg.fonttype': 'none'}):
 
 > **Projekt-Tipp:** Für Poster/Präsentationen SVG mit `svg.fonttype: 'none'` exportieren → Text bleibt in Figma/Illustrator editierbar!
 
+![Export-Formate: PNG, PDF, SVG (Outlines) und SVG (editierbarer Text)](export_formats.png)
+
 ---
 
 ## 🎨 Styling & Design-Tipps
@@ -483,6 +499,8 @@ ax.bar(x, height, width,
 
 **Verfügbare Hatch-Patterns:** `'/'`, `'\\'`, `'|'`, `'-'`, `'+'`, `'x'`, `'o'`, `'O'`, `'.'`, `'*'`
 
+![Bar Chart Styling: facecolor, edgecolor, alpha, Schraffur-Muster](bar_styling_options.png)
+
 ### Farbnamen und Colormaps
 
 ```python
@@ -508,6 +526,8 @@ cmaps = ['Greys', 'viridis', 'plasma', 'inferno', 'cividis']
 | **Bar Chart** (vertikal)   | Kategorische Werte vergleichen            | `ax.bar()`                                      | `04_histograms`                    |
 | **Bar Chart** (horizontal) | Viele Kategorien / Ranking                | `ax.barh()`                                     | `04_histograms`                    |
 | **Dashboard**              | Mehrere Charts kombiniert                 | `plt.subplot_mosaic()`                          | `01_layouting` + `04_histograms` |
+
+![Dashboard-Beispiel: 2D-Heatmap mit 1D-Histogrammen, erstellt mit subplot_mosaic](dashboard_example.png)
 
 ---
 
